@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+      - "8001:8001"  # Prometheus
+    env_file:
+      - .env
+    depends_on:
+      - pgvector
+    volumes:
+      - .:/app
+  pgvector:
+    image: pgvector/pgvector:pg16
+    shm_size: 128mb
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./pgvector_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

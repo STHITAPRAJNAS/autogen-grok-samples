@@ -1,0 +1,15 @@
+fastapi==0.115.0
+uvicorn==0.30.6
+gunicorn==22.0.0
+pyautogen[retrievechat]==0.2.35
+asyncpg==0.29.0
+boto3==1.34.162
+databricks-sql-connector==3.3.0
+sentence-transformers==3.0.1
+gql==3.5.0
+graphql-core==3.2.3
+tenacity==8.5.0
+structlog==24.4.0
+prometheus-client==0.20.0
+anyio==4.4.0
+python-dotenv==1.0.1
